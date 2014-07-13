@@ -3,6 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="100">
+            <Button Content="View"/>
+            <Button Content="Add"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="300" Margin="115,10,0,0" VerticalAlignment="Top" Width="392">
+        </StackPanel>
     </Grid>
 </Window>
