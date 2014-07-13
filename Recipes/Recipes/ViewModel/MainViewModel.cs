@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using System.Windows.Input;
+using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
 
 namespace Recipes.ViewModel
@@ -72,6 +73,12 @@ namespace Recipes.ViewModel
             throw new System.NotImplementedException();
         }
 
-
+        public UserControl AddNew
+        {
+            get
+            {
+                return new View.AddNewRecipeView();
+            }
+        }
     }
 }

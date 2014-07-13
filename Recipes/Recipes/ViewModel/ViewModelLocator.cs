@@ -43,6 +43,7 @@ namespace Recipes.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<AddNewRecipeViewModel>();
         }
 
         public MainViewModel Main
@@ -50,6 +51,14 @@ namespace Recipes.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
+        }
+
+        public AddNewRecipeViewModel AddNewRecipe
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddNewRecipeViewModel>();
             }
         }
         
