@@ -1,4 +1,6 @@
 using GalaSoft.MvvmLight;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace Recipes.ViewModel
 {
@@ -16,6 +18,9 @@ namespace Recipes.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private ICommand _viewRecipes;
+        private ICommand _addRecipe;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -30,5 +35,43 @@ namespace Recipes.ViewModel
             ////    // Code runs "for real"
             ////}
         }
+
+        public ICommand ViewRecipes
+        {
+            get
+            {
+                if (_viewRecipes == null)
+                {
+                    _viewRecipes = new RelayCommand(OnViewRecipes, () => true);
+                }
+
+                return _viewRecipes;
+            }
+        }
+
+        private void OnViewRecipes()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICommand AddRecipe
+        {
+            get
+            { 
+                if (_addRecipe == null) 
+                {
+                    _addRecipe = new RelayCommand(OnAddRecipe, () => true);
+                }
+
+                return _addRecipe;
+            }
+        }
+
+        private void OnAddRecipe()
+        {
+            throw new System.NotImplementedException();
+        }
+
+
     }
 }
