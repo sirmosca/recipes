@@ -7,6 +7,10 @@
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{Binding AddNewRecipe, Source={StaticResource Locator}}">
     <Grid>
-        <Button Content="button" Command="{Binding Path=TheCommand}" />
+        <StackPanel>
+            
+            <Button Content="button" Command="{Binding Path=TheCommand}" />
+        </StackPanel>
+        
     </Grid>
 </UserControl>
