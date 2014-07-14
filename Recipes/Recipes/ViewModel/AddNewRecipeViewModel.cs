@@ -1,34 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+
+using Recipes.Model;
 
 
 namespace Recipes.ViewModel
 {
     public class AddNewRecipeViewModel : ViewModelBase
     {
-        private ICommand _theCommand;
+        private ICommand _addIngredient;
+        private ObservableCollection<Ingredient> _ingredients;
 
-        public ICommand TheCommand
+        public AddNewRecipeViewModel()
+        {
+            _ingredients = new ObservableCollection<Ingredient>();
+        }
+
+        public ICommand AddIngredient
         {
             get
             {
-                if (_theCommand == null)
+                if (_addIngredient == null)
                 {
-                    _theCommand = new RelayCommand(Onstuff);
+                    _addIngredient = new RelayCommand(OnAddIngredient);
                 }
-                return _theCommand;
+
+                return _addIngredient;
             }
         }
 
-        private void Onstuff()
+        private void OnAddIngredient()
         {
-            throw new NotImplementedException();
+            Ingredients.Add(new Ingredient());
+        }
+
+        public ObservableCollection<Ingredient> Ingredients
+        {
+            get
+            {
+                return _ingredients;
+            }
         }
     }
 }
