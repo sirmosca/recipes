@@ -12,6 +12,12 @@
                 <TextBox Text="{Binding Path=Description}" Height="20" />
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="DirectionsDataTemplate">
+            <Grid Margin="4">
+                <TextBox Text="{Binding Path=Step}" Height="20" />
+                <TextBox Text="{Binding Path=Direction}" Height="20" />
+            </Grid>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -21,12 +27,19 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" Text="Ingredients" HorizontalAlignment="Center" />
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="Directions" HorizontalAlignment="Center" />
         <ListBox Grid.Column="0" Grid.Row="1" BorderBrush="Transparent" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch"
                  ItemsSource="{Binding Ingredients}" ItemTemplate="{StaticResource IngredientDataTemplate}">
         </ListBox>
+        <ListBox Grid.Column="1" Grid.Row="1" BorderBrush="Transparent" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch"
+                 ItemsSource="{Binding Directions}" ItemTemplate="{StaticResource DirectionsDataTemplate}">
+        </ListBox>
         <Button Grid.Column="0" Grid.Row="2" Command="{Binding Path=AddIngredient}" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" 
                 Content="Add Ingredient" Width="100" />
+        <Button Grid.Column="1" Grid.Row="2" Command="{Binding Path=AddDirection}" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                Content="Add Direction" Width="100" />
     </Grid>
 </UserControl>
