@@ -19,6 +19,7 @@ namespace Recipes.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private Control _currentControl;
         private ICommand _viewRecipes;
         private ICommand _addRecipe;
 
@@ -70,14 +71,19 @@ namespace Recipes.ViewModel
 
         private void OnAddRecipe()
         {
-            throw new System.NotImplementedException();
+            CurrentControl = new View.AddNewRecipeView();
         }
 
-        public UserControl AddNew
+        public Control CurrentControl
         {
             get
             {
-                return new View.AddNewRecipeView();
+                return _currentControl;
+            }
+            private set 
+            {
+                _currentControl = value;
+                RaisePropertyChanged("CurrentControl");
             }
         }
     }

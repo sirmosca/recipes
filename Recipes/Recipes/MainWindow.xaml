@@ -5,12 +5,12 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Grid>
         <StackPanel HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Stretch" Width="100">
-            <Button Content="View" Command="{Binding ViewRecipes}"/>
-            <Button Content="Add"/>
+            <Button Content="View" Command="{Binding Path=ViewRecipes}"/>
+            <Button Content="Add" Command="{Binding Path=AddRecipe}"/>
             <Button Content="Print"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Stretch" Height="300" Margin="115,10,0,0" VerticalAlignment="Stretch" Width="392">
-            <ContentControl Content="{Binding Path=AddNew}" />
+            <ContentControl Content="{Binding Path=CurrentControl}" />
         </StackPanel>
     </Grid>
 </Window>
