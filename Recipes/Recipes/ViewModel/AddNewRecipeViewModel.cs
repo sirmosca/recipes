@@ -18,6 +18,7 @@ namespace Recipes.ViewModel
     {
         private ICommand _addIngredient;
         private ObservableCollection<Ingredient> _ingredients;
+        private Recipe _recipe;
 
         public AddNewRecipeViewModel()
         {

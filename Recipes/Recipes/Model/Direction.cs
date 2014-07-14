@@ -12,11 +12,12 @@ namespace Recipes.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Ingredient
+    public partial class Direction
     {
-        public int IngredientsId { get; set; }
+        public int DirectionId { get; set; }
         public int RecipeId { get; set; }
-        public string Ingredient1 { get; set; }
+        public string Description { get; set; }
+        public int Step { get; set; }
     
         public virtual Recipe Recipe { get; set; }
     }
