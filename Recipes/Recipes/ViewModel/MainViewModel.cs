@@ -1,7 +1,10 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+
 using System.Windows.Input;
 using System.Windows.Controls;
-using GalaSoft.MvvmLight.Command;
+
+using Recipes.Model;
 
 namespace Recipes.ViewModel
 {
@@ -19,7 +22,7 @@ namespace Recipes.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private Control _currentControl;
+        private ViewModelBase _currentViewModel;
         private ICommand _viewRecipes;
         private ICommand _addRecipe;
 
@@ -71,19 +74,17 @@ namespace Recipes.ViewModel
 
         private void OnAddRecipe()
         {
-            CurrentControl = new View.AddNewRecipeView();
+            CurrentViewModel = new AddNewRecipeViewModel();
         }
 
-        public Control CurrentControl
+        public ViewModelBase CurrentViewModel
         {
-            get
+            get { return _currentViewModel; }
+            set
             {
-                return _currentControl;
-            }
-            private set 
-            {
-                _currentControl = value;
-                RaisePropertyChanged("CurrentControl");
+                if (_currentViewModel == value) return;
+                _currentViewModel = value;
+                RaisePropertyChanged("CurrentViewModel");
             }
         }
     }

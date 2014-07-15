@@ -4,13 +4,15 @@
         Title="MainWindow" Height="350" Width="525"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Stretch" Width="100">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Stretch" Width="100">
             <Button Content="View" Command="{Binding Path=ViewRecipes}"/>
             <Button Content="Add" Command="{Binding Path=AddRecipe}"/>
             <Button Content="Print"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Stretch" Height="300" Margin="115,10,0,0" VerticalAlignment="Stretch" Width="392">
-            <ContentControl Content="{Binding Path=CurrentControl}" />
-        </StackPanel>
+        <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Content="{Binding Path=CurrentViewModel}" />
     </Grid>
 </Window>

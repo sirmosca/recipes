@@ -11,7 +11,6 @@ using GalaSoft.MvvmLight.Command;
 
 using Recipes.Model;
 
-
 namespace Recipes.ViewModel
 {
     public class AddNewRecipeViewModel : ViewModelBase
@@ -22,6 +21,7 @@ namespace Recipes.ViewModel
 
         public AddNewRecipeViewModel()
         {
+            _recipe = new Recipe() ;
             _ingredients = new ObservableCollection<Ingredient>();
         }
 
