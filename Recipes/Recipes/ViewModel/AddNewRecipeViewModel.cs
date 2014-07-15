@@ -16,12 +16,12 @@ namespace Recipes.ViewModel
     public class AddNewRecipeViewModel : ViewModelBase
     {
         private ICommand _addIngredient;
+        private string _recipeName;
         private ObservableCollection<Ingredient> _ingredients;
-        private Recipe _recipe;
 
         public AddNewRecipeViewModel()
         {
-            _recipe = new Recipe() ;
+            RecipeName = "test";
             _ingredients = new ObservableCollection<Ingredient>();
         }
 
@@ -48,6 +48,16 @@ namespace Recipes.ViewModel
             get
             {
                 return _ingredients;
+            }
+        }
+
+        public string RecipeName
+        {
+            get { return _recipeName; }
+            private set
+            {
+                _recipeName = value;
+                RaisePropertyChanged("RecipeName");
             }
         }
     }

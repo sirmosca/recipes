@@ -22,6 +22,7 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="*" />
             <RowDefinition Height="28" />
         </Grid.RowDefinitions>
@@ -29,17 +30,18 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="Ingredients" HorizontalAlignment="Center" />
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="Directions" HorizontalAlignment="Center" />
-        <ListBox Grid.Column="0" Grid.Row="1" BorderBrush="Transparent" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch"
+        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding Path=RecipeName, Mode=OneWay}" HorizontalAlignment="Center" />
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Ingredients" HorizontalAlignment="Center" />
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Directions" HorizontalAlignment="Center" />
+        <ListBox Grid.Column="0" Grid.Row="2" BorderBrush="Transparent" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch"
                  ItemsSource="{Binding Ingredients}" ItemTemplate="{StaticResource IngredientDataTemplate}">
         </ListBox>
-        <ListBox Grid.Column="1" Grid.Row="1" BorderBrush="Transparent" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch"
+        <ListBox Grid.Column="1" Grid.Row="2" BorderBrush="Transparent" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch"
                  ItemsSource="{Binding Directions}" ItemTemplate="{StaticResource DirectionsDataTemplate}">
         </ListBox>
-        <Button Grid.Column="0" Grid.Row="2" Command="{Binding Path=AddIngredient}" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" 
+        <Button Grid.Column="0" Grid.Row="3" Command="{Binding Path=AddIngredient}" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" 
                 Content="Add Ingredient" Width="100" />
-        <Button Grid.Column="1" Grid.Row="2" Command="{Binding Path=AddDirection}" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" 
+        <Button Grid.Column="1" Grid.Row="3" Command="{Binding Path=AddDirection}" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" 
                 Content="Add Direction" Width="100" />
     </Grid>
 </UserControl>
