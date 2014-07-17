@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Message\CancelAddNewRecipeNameMessage.cs" />
     <Compile Include="Model\Direction.cs">
       <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
@@ -99,9 +100,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
+    <Compile Include="Service\RecipeRepository.cs" />
+    <Compile Include="ViewModel\AddNewRecipeNameViewModel.cs" />
     <Compile Include="ViewModel\AddNewRecipeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\AddNewRecipeNameView.xaml.cs">
+      <DependentUpon>AddNewRecipeNameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddNewRecipeView.xaml.cs">
       <DependentUpon>AddNewRecipeView.xaml</DependentUpon>
     </Compile>
@@ -117,6 +123,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddNewRecipeNameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddNewRecipeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,7 +178,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Service\" />
+    <Folder Include="Interface\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
