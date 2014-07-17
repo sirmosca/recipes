@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Message\CancelAddNewRecipeNameMessage.cs" />
+    <Compile Include="Message\SaveRecipeCompletedMessage.cs" />
     <Compile Include="Model\Direction.cs">
       <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>

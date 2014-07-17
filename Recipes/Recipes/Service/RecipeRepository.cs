@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using Recipes.Model;
+using Recipes.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace Recipes.Service
             using (var context = new  RecipesEntities())
             {
                 r = context.Recipes.Add(r);
-                var b = context.GetValidationErrors();
+                context.SaveChanges();
+                Messenger.Default.Send(new SaveRecipeCompletedMessage(r));
             }
         }
     }

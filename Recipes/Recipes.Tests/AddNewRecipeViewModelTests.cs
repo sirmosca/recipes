@@ -11,7 +11,7 @@ namespace Recipes.Tests
         [TestMethod]
         public void CanAddIngredient()
         {
-            AddNewRecipeViewModel vm = new AddNewRecipeViewModel();
+            AddNewRecipeViewModel vm = new AddNewRecipeViewModel(null);
             vm.AddIngredient.Execute(null);
             int newCount = vm.Ingredients.Count;
             Assert.AreEqual(1, newCount);

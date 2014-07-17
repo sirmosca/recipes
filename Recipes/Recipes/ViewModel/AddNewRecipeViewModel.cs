@@ -1,15 +1,13 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Recipes.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-
-using Recipes.Model;
 
 namespace Recipes.ViewModel
 {
@@ -19,9 +17,9 @@ namespace Recipes.ViewModel
         private string _recipeName;
         private ObservableCollection<Ingredient> _ingredients;
 
-        public AddNewRecipeViewModel()
+        public AddNewRecipeViewModel(Recipe recipe)
         {
-            RecipeName = "test";
+            RecipeName = recipe.Name;
             _ingredients = new ObservableCollection<Ingredient>();
             _addIngredient = new RelayCommand(OnAddIngredient);
         }

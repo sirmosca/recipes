@@ -45,11 +45,17 @@ namespace Recipes.ViewModel
             _addRecipe = new RelayCommand(OnAddRecipe, () => true);
             _viewRecipes = new RelayCommand(OnViewRecipes, () => true);
             Messenger.Default.Register<CancelAddNewRecipeNameMessage>(this, message => OnCancelAddNewRecipeName(message));
+            Messenger.Default.Register<SaveRecipeCompletedMessage>(this, message => OnSaveRecipeCompleted(message));
         }
 
         private void OnCancelAddNewRecipeName(MessageBase mb)
         {
             CurrentViewModel = null;
+        }
+
+        private void OnSaveRecipeCompleted(SaveRecipeCompletedMessage message)
+        {
+            CurrentViewModel = new AddNewRecipeViewModel(message.Recipe);
         }
 
         public ICommand ViewRecipes
