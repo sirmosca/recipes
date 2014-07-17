@@ -17,11 +17,15 @@ namespace Recipes.ViewModel
         private string _recipeName;
         private ObservableCollection<Ingredient> _ingredients;
 
-        public AddNewRecipeViewModel(Recipe recipe)
+        public AddNewRecipeViewModel()
+        {
+            _addIngredient = new RelayCommand(OnAddIngredient);
+        }
+
+        public void SetCurrentRecipe(Recipe recipe)
         {
             RecipeName = recipe.Name;
-            _ingredients = new ObservableCollection<Ingredient>();
-            _addIngredient = new RelayCommand(OnAddIngredient);
+            _ingredients = new ObservableCollection<Ingredient>(recipe.Ingredients);
         }
 
         public ICommand AddIngredient
