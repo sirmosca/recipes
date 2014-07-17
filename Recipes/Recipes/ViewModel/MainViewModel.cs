@@ -1,9 +1,11 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 
 using System.Windows.Input;
 using System.Windows.Controls;
 
+using Recipes.Message;
 using Recipes.Model;
 
 namespace Recipes.ViewModel
@@ -39,19 +41,20 @@ namespace Recipes.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+
+            _addRecipe = new RelayCommand(OnAddRecipe, () => true);
+            _viewRecipes = new RelayCommand(OnViewRecipes, () => true);
+            Messenger.Default.Register<CancelAddNewRecipeNameMessage>(this, message => OnCancelAddNewRecipeName(message));
+        }
+
+        private void OnCancelAddNewRecipeName(MessageBase mb)
+        {
+            CurrentViewModel = null;
         }
 
         public ICommand ViewRecipes
         {
-            get
-            {
-                if (_viewRecipes == null)
-                {
-                    _viewRecipes = new RelayCommand(OnViewRecipes, () => true);
-                }
-
-                return _viewRecipes;
-            }
+            get { return _viewRecipes; }
         }
 
         private void OnViewRecipes()
@@ -61,20 +64,12 @@ namespace Recipes.ViewModel
 
         public ICommand AddRecipe
         {
-            get
-            { 
-                if (_addRecipe == null) 
-                {
-                    _addRecipe = new RelayCommand(OnAddRecipe, () => true);
-                }
-
-                return _addRecipe;
-            }
+            get { return _addRecipe; }
         }
 
         private void OnAddRecipe()
         {
-            CurrentViewModel = new AddNewRecipeViewModel();
+            CurrentViewModel = new AddNewRecipeNameViewModel();
         }
 
         public ViewModelBase CurrentViewModel

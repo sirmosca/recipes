@@ -23,19 +23,12 @@ namespace Recipes.ViewModel
         {
             RecipeName = "test";
             _ingredients = new ObservableCollection<Ingredient>();
+            _addIngredient = new RelayCommand(OnAddIngredient);
         }
 
         public ICommand AddIngredient
         {
-            get
-            {
-                if (_addIngredient == null)
-                {
-                    _addIngredient = new RelayCommand(OnAddIngredient);
-                }
-
-                return _addIngredient;
-            }
+            get { return _addIngredient; }
         }
 
         private void OnAddIngredient()
