@@ -16,5 +16,14 @@ namespace Recipes.Tests
             int newCount = vm.Ingredients.Count;
             Assert.AreEqual(1, newCount);
         }
+
+        [TestMethod]
+        public void CanAddDirection()
+        {
+            AddNewRecipeViewModel vm = new AddNewRecipeViewModel();
+            vm.AddDirection.Execute(null);
+            int newCount = vm.Directions.Count;
+            Assert.AreEqual(1, newCount);
+        }
     }
 }

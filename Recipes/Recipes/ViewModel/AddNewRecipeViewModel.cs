@@ -13,38 +13,38 @@ namespace Recipes.ViewModel
 {
     public class AddNewRecipeViewModel : ViewModelBase
     {
-        private ICommand _addIngredient;
         private string _recipeName;
-        private ObservableCollection<Ingredient> _ingredients;
 
         public AddNewRecipeViewModel()
         {
-            _addIngredient = new RelayCommand(OnAddIngredient);
+            Ingredients = new ObservableCollection<Ingredient>();
+            Directions = new ObservableCollection<Direction>();
+            AddIngredient = new RelayCommand(OnAddIngredient);
+            AddDirection = new RelayCommand(OnAddDirection);
         }
 
         public void SetCurrentRecipe(Recipe recipe)
         {
             RecipeName = recipe.Name;
-            _ingredients = new ObservableCollection<Ingredient>(recipe.Ingredients);
         }
 
-        public ICommand AddIngredient
-        {
-            get { return _addIngredient; }
-        }
+        public ICommand AddIngredient { get; private set; }
 
         private void OnAddIngredient()
         {
             Ingredients.Add(new Ingredient());
         }
 
-        public ObservableCollection<Ingredient> Ingredients
+        public ICommand AddDirection { get; private set; }
+
+        private void OnAddDirection()
         {
-            get
-            {
-                return _ingredients;
-            }
+            Directions.Add(new Direction());
         }
+
+        public ObservableCollection<Ingredient> Ingredients { get; private set; }
+
+        public ObservableCollection<Direction> Directions { get; private set; }
 
         public string RecipeName
         {
