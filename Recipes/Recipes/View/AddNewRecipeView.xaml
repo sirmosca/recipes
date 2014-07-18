@@ -24,10 +24,10 @@
     </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="20" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="28" />
+            <RowDefinition Height="35" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -42,9 +42,14 @@
         <ListBox Grid.Column="1" Grid.Row="2" BorderBrush="Transparent" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch"
                  ItemsSource="{Binding Directions}" ItemTemplate="{StaticResource DirectionsDataTemplate}">
         </ListBox>
-        <Button Grid.Column="0" Grid.Row="3" Command="{Binding Path=AddIngredient}" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" 
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+            <Button HorizontalAlignment="Left" Command="{Binding Path=AddIngredient}" Height="24" 
                 Content="Add Ingredient" Width="100" />
-        <Button Grid.Column="1" Grid.Row="3" Command="{Binding Path=AddDirection}" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" 
+            <Button Command="{Binding Path=AddDirection}" Margin="4,0,0,0" Height="24" HorizontalAlignment="Left" 
                 Content="Add Direction" Width="100" />
+            <Button Command="{Binding Path=Save}" Margin="4,0,0,0" Height="24" HorizontalAlignment="Right" 
+                Content="Save" Width="50" />
+        </StackPanel>
+
     </Grid>
 </UserControl>
