@@ -33,7 +33,7 @@ namespace Recipes.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IMessenger messenger, IRecipeRepository repo)
+        public MainViewModel(IRecipeRepository repo)
         {
             ////if (IsInDesignMode)
             ////{
