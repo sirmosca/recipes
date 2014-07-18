@@ -44,11 +44,13 @@
         </ListBox>
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
             <Button HorizontalAlignment="Left" Command="{Binding Path=AddIngredient}" Height="24" 
-                Content="Add Ingredient" Width="100" />
+                Content="Ingredient" Width="90" />
             <Button Command="{Binding Path=AddDirection}" Margin="4,0,0,0" Height="24" HorizontalAlignment="Left" 
-                Content="Add Direction" Width="100" />
+                Content="Direction" Width="70" />
             <Button Command="{Binding Path=Save}" Margin="4,0,0,0" Height="24" HorizontalAlignment="Right" 
                 Content="Save" Width="50" />
+            <Button Command="{Binding Path=Cancel}" Margin="4,0,0,0" Height="24" HorizontalAlignment="Right" 
+                Content="Cancel" Width="50" />
         </StackPanel>
 
     </Grid>
