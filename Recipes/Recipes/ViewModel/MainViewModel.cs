@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Windows.Input;
 using System.Windows.Controls;
 
+using Recipes.Interface;
 using Recipes.Message;
 using Recipes.Model;
 
@@ -27,11 +28,12 @@ namespace Recipes.ViewModel
         private ViewModelBase _currentViewModel;
         private ICommand _viewRecipes;
         private ICommand _addRecipe;
+        private IRecipeRepository _repo;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(IMessenger messenger, IRecipeRepository repo)
         {
             ////if (IsInDesignMode)
             ////{
@@ -42,6 +44,7 @@ namespace Recipes.ViewModel
             ////    // Code runs "for real"
             ////}
 
+            _repo = repo;
             _addRecipe = new RelayCommand(OnAddRecipe, () => true);
             _viewRecipes = new RelayCommand(OnViewRecipes, () => true);
             Messenger.Default.Register<CancelAddNewRecipeNameMessage>(this, message => OnCancelAddNewRecipeName(message));
@@ -77,7 +80,7 @@ namespace Recipes.ViewModel
 
         private void OnAddRecipe()
         {
-            CurrentViewModel = new AddNewRecipeNameViewModel();
+            CurrentViewModel = new AddNewRecipeNameViewModel(_repo);
         }
 
         public ViewModelBase CurrentViewModel

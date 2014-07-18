@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Recipes.Interface;
 using Recipes.Message;
 using Recipes.Model;
 using Recipes.Service;
@@ -18,9 +19,11 @@ namespace Recipes.ViewModel
     {
         private ICommand _save;
         private ICommand _cancel;
+        private IRecipeRepository _repo;
 
-        public AddNewRecipeNameViewModel()
+        public AddNewRecipeNameViewModel(IRecipeRepository repo)
         {
+            _repo = repo;
             _save = new RelayCommand(OnSave);
             _cancel = new RelayCommand(OnCancel);
         }
@@ -29,8 +32,7 @@ namespace Recipes.ViewModel
         {
             try
             {
-                var repo = new RecipeRepository();
-                repo.Save(Name, Notes, ServingSize);
+                _repo.Save(Name, Notes, ServingSize);
             }
             catch (Exception ex)
             {

@@ -14,6 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 
 namespace Recipes.ViewModel
@@ -42,6 +43,7 @@ namespace Recipes.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
+            //SimpleIoc.Default.Register<IMessenger, Messenger>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AddNewRecipeViewModel>();
             SimpleIoc.Default.Register<AddNewRecipeNameViewModel>();
@@ -69,6 +71,11 @@ namespace Recipes.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<AddNewRecipeNameViewModel>();
             }
+        }
+
+        public IMessenger MyMessenger
+        {
+            get { return Messenger.Default; }
         }
         
         public static void Cleanup()

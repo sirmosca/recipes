@@ -62,10 +62,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AddNewRecipeNameViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainViewModelTests.cs" />
     <Compile Include="AddNewRecipeViewModelTests.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="TestRepository.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

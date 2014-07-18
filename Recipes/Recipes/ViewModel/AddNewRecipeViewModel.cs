@@ -46,6 +46,16 @@ namespace Recipes.ViewModel
 
         public ObservableCollection<Direction> Directions { get; private set; }
 
+        public bool HasIngredients
+        {
+            get { return Ingredients.Count > 0; }
+        }
+
+        public bool HasDirections
+        {
+            get { return Directions.Count > 0; }
+        }
+
         public string RecipeName
         {
             get { return _recipeName; }

@@ -10,7 +10,7 @@ namespace Recipes.Tests
         [TestMethod]
         public void TestCanCreateViewModel()
         {
-            MainViewModel vm = new MainViewModel();
+            MainViewModel vm = new MainViewModel(null, null);
             Assert.IsNotNull(vm);
         }
     }
