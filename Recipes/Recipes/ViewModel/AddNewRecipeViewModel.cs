@@ -39,7 +39,9 @@ namespace Recipes.ViewModel
 
         private void OnAddDirection()
         {
-            Directions.Add(new Direction());
+            var direction = new Direction();
+            direction.Step = Directions.Count + 1;
+            Directions.Add(direction);
         }
 
         public ObservableCollection<Ingredient> Ingredients { get; private set; }
