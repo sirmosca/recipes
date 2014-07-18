@@ -14,7 +14,7 @@
         <DataTemplate x:Key="DirectionsDataTemplate">
             <Grid Margin="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="0" Text="{Binding Path=Step}" Height="20" />
