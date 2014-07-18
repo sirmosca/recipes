@@ -16,6 +16,12 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
+using Recipes.Interface;
+using Recipes.Model;
+using Recipes.Service;
+using System.Collections.Generic;
 
 namespace Recipes.ViewModel
 {
@@ -30,7 +36,15 @@ namespace Recipes.ViewModel
         /// </summary>
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            IUnityContainer unity = new UnityContainer();
+            ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(unity));
+            var repo = new RecipeRepository();
+ 
+            unity.RegisterInstance<IMessenger>(Messenger.Default);
+            unity.RegisterInstance<IRecipeRepository>(repo, new ContainerControlledLifetimeManager());
+            unity.RegisterType<MainViewModel>();
+            unity.RegisterType<AddNewRecipeViewModel>();
+            unity.RegisterType<AddNewRecipeNameViewModel>();
 
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
@@ -42,11 +56,6 @@ namespace Recipes.ViewModel
             ////    // Create run time view services and models
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
-
-            //SimpleIoc.Default.Register<IMessenger, Messenger>();
-            SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<AddNewRecipeViewModel>();
-            SimpleIoc.Default.Register<AddNewRecipeNameViewModel>();
         }
 
         public MainViewModel Main
@@ -71,11 +80,6 @@ namespace Recipes.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<AddNewRecipeNameViewModel>();
             }
-        }
-
-        public IMessenger MyMessenger
-        {
-            get { return Messenger.Default; }
         }
         
         public static void Cleanup()

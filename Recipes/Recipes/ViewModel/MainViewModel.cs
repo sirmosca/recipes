@@ -33,7 +33,7 @@ namespace Recipes.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IRecipeRepository repo)
+        public MainViewModel(IRecipeRepository repo, IMessenger messenger)
         {
             ////if (IsInDesignMode)
             ////{
@@ -47,8 +47,14 @@ namespace Recipes.ViewModel
             _repo = repo;
             _addRecipe = new RelayCommand(OnAddRecipe, () => true);
             _viewRecipes = new RelayCommand(OnViewRecipes, () => true);
-            Messenger.Default.Register<CancelAddNewRecipeNameMessage>(this, message => OnCancelAddNewRecipeName(message));
-            Messenger.Default.Register<SaveRecipeCompletedMessage>(this, message => OnSaveRecipeCompleted(message));
+
+            if (messenger == null)
+            {
+                return;
+            }
+
+            messenger.Register<CancelAddNewRecipeNameMessage>(this, message => OnCancelAddNewRecipeName(message));
+            messenger.Register<SaveRecipeCompletedMessage>(this, message => OnSaveRecipeCompleted(message));
         }
 
         private void OnCancelAddNewRecipeName(MessageBase mb)
