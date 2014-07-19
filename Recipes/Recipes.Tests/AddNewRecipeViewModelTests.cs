@@ -11,7 +11,7 @@ namespace Recipes.Tests
         [TestMethod]
         public void CanAddIngredient()
         {
-            AddNewRecipeViewModel vm = new AddNewRecipeViewModel(null);
+            AddNewRecipeViewModel vm = new AddNewRecipeViewModel();
             vm.AddIngredient.Execute(null);
             int newCount = vm.Ingredients.Count;
             Assert.IsTrue(vm.HasIngredients);
@@ -20,7 +20,7 @@ namespace Recipes.Tests
         [TestMethod]
         public void CanAddDirection()
         {
-            AddNewRecipeViewModel vm = new AddNewRecipeViewModel(null);
+            AddNewRecipeViewModel vm = new AddNewRecipeViewModel();
             vm.AddDirection.Execute(null);
             Assert.IsTrue(vm.HasDirections);
         }

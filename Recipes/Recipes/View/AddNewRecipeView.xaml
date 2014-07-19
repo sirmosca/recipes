@@ -29,7 +29,9 @@
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <TextBox Margin="3,0,3,0" Grid.Column="0" Text="{Binding Path=Description}" Height="20" />
-                <Button Margin="3,0,3,0" Grid.Column="1" Style="{StaticResource DeleteButtonStyle}" />
+                <Button x:Name="DeleteIngredient" Margin="3,0,3,0" Grid.Column="1" Style="{StaticResource DeleteButtonStyle}"
+                        Command="{Binding Path=Parent.DataContext.DeleteIngredient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                        CommandParameter="{Binding}"/>
             </Grid>
         </DataTemplate>
         

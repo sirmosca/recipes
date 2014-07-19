@@ -65,7 +65,7 @@ namespace Recipes.ViewModel
 
         private void OnSaveRecipeCompleted(SaveRecipeCompletedMessage message)
         {
-            var vm = new AddNewRecipeViewModel(_messenger);
+            var vm = new AddNewRecipeViewModel();
             vm.SetCurrentRecipe(message.Recipe);
             CurrentViewModel = vm;
         }

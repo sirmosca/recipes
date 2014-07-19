@@ -16,21 +16,21 @@ namespace Recipes.ViewModel
     public class AddNewRecipeViewModel : ViewModelBase
     {
         private string _recipeName;
-        private IMessenger _messenger;
+        private Recipe _recipe;
 
-        public AddNewRecipeViewModel(IMessenger messenger)
+        public AddNewRecipeViewModel()
         {
-            _messenger = messenger;
-            Ingredients = new ObservableCollection<Ingredient>();
-            Directions = new ObservableCollection<Direction>();
             AddIngredient = new RelayCommand(OnAddIngredient);
-            DeleteIngredient = new RelayCommand<Ingredient>(OnDeleteIngredient);
+            DeleteIngredient = new RelayCommand<Ingredient>(param => OnDeleteIngredient(param));
             AddDirection = new RelayCommand(OnAddDirection);
         }
 
         public void SetCurrentRecipe(Recipe recipe)
         {
+            _recipe = recipe;
             RecipeName = recipe.Name;
+            Ingredients = new ObservableCollection<Ingredient>(recipe.Ingredients);
+            Directions = new ObservableCollection<Direction>(recipe.Directions);
         }
 
         public ICommand AddIngredient { get; private set; }
@@ -39,12 +39,15 @@ namespace Recipes.ViewModel
 
         private void OnAddIngredient()
         {
-            Ingredients.Add(new Ingredient());
+            var ingredient = new Ingredient();
+            _recipe.Ingredients.Add(ingredient);
+            Ingredients.Add(ingredient);
         }
 
         private void OnDeleteIngredient(Ingredient ingredient)
         {
-            _messenger.Send<DeleteIngredientMessage>(new DeleteIngredientMessage(ingredient));
+            _recipe.Ingredients.Remove(ingredient);
+            Ingredients.Remove(ingredient);
         }
 
         public ICommand AddDirection { get; private set; }
