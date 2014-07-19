@@ -29,9 +29,9 @@
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <TextBox Margin="3,0,3,0" Grid.Column="0" Text="{Binding Path=Description}" Height="20" />
-                <Button x:Name="DeleteIngredient" Margin="3,0,3,0" Grid.Column="1" Style="{StaticResource ListBoxDeleteButtonStyle}"
+                <Button Margin="3,0,3,0" Grid.Column="1" Style="{StaticResource ListBoxDeleteButtonStyle}"
                         Command="{Binding Path=Parent.DataContext.DeleteIngredient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
-                        CommandParameter="{Binding}"/>
+                        CommandParameter="{Binding}" />
             </Grid>
         </DataTemplate>
         
@@ -42,9 +42,11 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Text="{Binding Path=Step}" Height="20" />
-                <TextBox Grid.Column="1" Text="{Binding Path=Direction}" Height="20" />
-                <Button Margin="3,0,3,0" Grid.Column="2" Style="{StaticResource ListBoxDeleteButtonStyle}" />
+                <TextBox Margin="3,0,3,0" Grid.Column="0" Text="{Binding Path=Step}" Height="20" />
+                <TextBox Margin="3,0,3,0" Grid.Column="1" Text="{Binding Path=Direction}" Height="20" />
+                <Button Margin="3,0,3,0" Grid.Column="2" Style="{StaticResource ListBoxDeleteButtonStyle}" 
+                        Command="{Binding Path=Parent.DataContext.DeleteDirection, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                        CommandParameter="{Binding}" />
             </Grid>
         </DataTemplate>
     </UserControl.Resources>

@@ -23,19 +23,10 @@ namespace Recipes.ViewModel
             AddIngredient = new RelayCommand(OnAddIngredient);
             DeleteIngredient = new RelayCommand<Ingredient>(param => OnDeleteIngredient(param));
             AddDirection = new RelayCommand(OnAddDirection);
-        }
-
-        public void SetCurrentRecipe(Recipe recipe)
-        {
-            _recipe = recipe;
-            RecipeName = recipe.Name;
-            Ingredients = new ObservableCollection<Ingredient>(recipe.Ingredients);
-            Directions = new ObservableCollection<Direction>(recipe.Directions);
+            DeleteDirection = new RelayCommand<Direction>(param => OnDeleteDirection(param));
         }
 
         public ICommand AddIngredient { get; private set; }
-
-        public ICommand DeleteIngredient { get; private set; }
 
         private void OnAddIngredient()
         {
@@ -43,6 +34,8 @@ namespace Recipes.ViewModel
             _recipe.Ingredients.Add(ingredient);
             Ingredients.Add(ingredient);
         }
+
+        public ICommand DeleteIngredient { get; private set; }
 
         private void OnDeleteIngredient(Ingredient ingredient)
         {
@@ -57,6 +50,22 @@ namespace Recipes.ViewModel
             var direction = new Direction();
             direction.Step = Directions.Count + 1;
             Directions.Add(direction);
+        }
+
+        public ICommand DeleteDirection { get; private set; }
+
+        private void OnDeleteDirection(Direction direction)
+        {
+            _recipe.Directions.Remove(direction);
+            Directions.Remove(direction);
+        }
+
+        public void SetCurrentRecipe(Recipe recipe)
+        {
+            _recipe = recipe;
+            RecipeName = recipe.Name;
+            Ingredients = new ObservableCollection<Ingredient>(recipe.Ingredients);
+            Directions = new ObservableCollection<Direction>(recipe.Directions);
         }
 
         public ObservableCollection<Ingredient> Ingredients { get; private set; }
