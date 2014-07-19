@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using Recipes.Message;
 using Recipes.Model;
 using System;
 using System.Collections.Generic;
@@ -14,12 +16,15 @@ namespace Recipes.ViewModel
     public class AddNewRecipeViewModel : ViewModelBase
     {
         private string _recipeName;
+        private IMessenger _messenger;
 
-        public AddNewRecipeViewModel()
+        public AddNewRecipeViewModel(IMessenger messenger)
         {
+            _messenger = messenger;
             Ingredients = new ObservableCollection<Ingredient>();
             Directions = new ObservableCollection<Direction>();
             AddIngredient = new RelayCommand(OnAddIngredient);
+            DeleteIngredient = new RelayCommand<Ingredient>(OnDeleteIngredient);
             AddDirection = new RelayCommand(OnAddDirection);
         }
 
@@ -30,9 +35,16 @@ namespace Recipes.ViewModel
 
         public ICommand AddIngredient { get; private set; }
 
+        public ICommand DeleteIngredient { get; private set; }
+
         private void OnAddIngredient()
         {
             Ingredients.Add(new Ingredient());
+        }
+
+        private void OnDeleteIngredient(Ingredient ingredient)
+        {
+            _messenger.Send<DeleteIngredientMessage>(new DeleteIngredientMessage(ingredient));
         }
 
         public ICommand AddDirection { get; private set; }

@@ -29,6 +29,7 @@ namespace Recipes.ViewModel
         private ICommand _viewRecipes;
         private ICommand _addRecipe;
         private IRecipeRepository _repo;
+        private IMessenger _messenger;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -52,9 +53,9 @@ namespace Recipes.ViewModel
             {
                 return;
             }
-
-            messenger.Register<CancelAddNewRecipeNameMessage>(this, message => OnCancelAddNewRecipeName(message));
-            messenger.Register<SaveRecipeCompletedMessage>(this, message => OnSaveRecipeCompleted(message));
+            _messenger = messenger;
+            _messenger.Register<CancelAddNewRecipeNameMessage>(this, message => OnCancelAddNewRecipeName(message));
+            _messenger.Register<SaveRecipeCompletedMessage>(this, message => OnSaveRecipeCompleted(message));
         }
 
         private void OnCancelAddNewRecipeName(MessageBase mb)
@@ -64,7 +65,7 @@ namespace Recipes.ViewModel
 
         private void OnSaveRecipeCompleted(SaveRecipeCompletedMessage message)
         {
-            var vm = new AddNewRecipeViewModel();
+            var vm = new AddNewRecipeViewModel(_messenger);
             vm.SetCurrentRecipe(message.Recipe);
             CurrentViewModel = vm;
         }
