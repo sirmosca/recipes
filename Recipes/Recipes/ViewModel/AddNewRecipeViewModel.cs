@@ -20,10 +20,12 @@ namespace Recipes.ViewModel
         private string _recipeName;
         private Recipe _recipe;
         private IRecipeRepository _repo;
+        private IMessenger _messenger;
 
-        public AddNewRecipeViewModel(IRecipeRepository repo)
+        public AddNewRecipeViewModel(IRecipeRepository repo, IMessenger messenger)
         {
             _repo = repo;
+            _messenger = messenger;
             Ingredients = new ObservableCollection<Ingredient>();
             Directions = new ObservableCollection<Direction>();
             Save = new RelayCommand(OnSave);
@@ -40,7 +42,7 @@ namespace Recipes.ViewModel
             _recipe.Ingredients = new Collection<Ingredient>(Ingredients);
             _recipe.Directions = new Collection<Direction>(Directions);
             _recipe = _repo.Save(_recipe);
-            Messenger.Default.Send(new SaveRecipeCompletedMessage(_recipe));
+            _messenger.Send(new SaveRecipeCompletedMessage(_recipe));
         }
 
         public ICommand AddIngredient { get; private set; }
