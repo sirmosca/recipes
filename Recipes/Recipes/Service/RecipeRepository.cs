@@ -32,6 +32,7 @@ namespace Recipes.Service
             using (var context = new RecipesEntities())
             {
                 recipe = context.Recipes.Add(recipe);
+                var v = context.GetValidationErrors();
                 context.SaveChanges();
                 return recipe;
             }

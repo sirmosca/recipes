@@ -39,10 +39,15 @@ namespace Recipes.ViewModel
 
         private void OnSave()
         {
-            _recipe.Ingredients = new Collection<Ingredient>(Ingredients);
-            _recipe.Directions = new Collection<Direction>(Directions);
-            _recipe = _repo.Save(_recipe);
-            _messenger.Send(new SaveRecipeCompletedMessage(_recipe));
+            try
+            {
+                _recipe.Ingredients = new Collection<Ingredient>(Ingredients);
+                _recipe.Directions = new Collection<Direction>(Directions);
+                _recipe = _repo.Save(_recipe);
+                _messenger.Send(new SaveRecipeCompletedMessage(_recipe));
+            }
+            catch (Exception ex)
+            { }
         }
 
         public ICommand AddIngredient { get; private set; }
