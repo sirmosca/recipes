@@ -19,9 +19,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" HorizontalAlignment="Left" Height="300" Margin="3" VerticalAlignment="Stretch" Width="100">
-            <Button Margin="3" Content="View" Command="{Binding Path=ViewRecipes}"/>
+            <Button Margin="3" Content="Search" Command="{Binding Path=SearchRecipes}"/>
             <Button Margin="3" Content="Add" Command="{Binding Path=AddRecipe}"/>
-            <Button Margin="3" Content="Print"/>
         </StackPanel>
         <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Content="{Binding Path=CurrentViewModel}" />
     </Grid>

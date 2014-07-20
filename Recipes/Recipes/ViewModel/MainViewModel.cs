@@ -26,8 +26,6 @@ namespace Recipes.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private ViewModelBase _currentViewModel;
-        private ICommand _viewRecipes;
-        private ICommand _addRecipe;
         private IRecipeRepository _repo;
         private IMessenger _messenger;
 
@@ -47,7 +45,7 @@ namespace Recipes.ViewModel
 
             _repo = repo;
             _addRecipe = new RelayCommand(OnAddRecipe, () => true);
-            _viewRecipes = new RelayCommand(OnViewRecipes, () => true);
+            _searchRecipes = new RelayCommand(OnSearchRecipes, () => true);
 
             if (messenger == null)
             {
@@ -58,6 +56,10 @@ namespace Recipes.ViewModel
             _messenger.Register<SaveNewRecipeCompletedMessage>(this, message => OnNewSaveRecipeCompleted(message));
             _messenger.Register<SaveRecipeCompletedMessage>(this, message => OnSaveRecipeCompleted(message));
         }
+
+        public ICommand SearchRecipes { get; private set; }
+        
+        public ICommand AddRecipe { get; private set; }
 
         private void OnCancelAddNewRecipeName(MessageBase mb)
         {
@@ -76,19 +78,9 @@ namespace Recipes.ViewModel
             CurrentViewModel = null;
         }
 
-        public ICommand ViewRecipes
-        {
-            get { return _viewRecipes; }
-        }
-
-        private void OnViewRecipes()
+        private void OnSearchRecipes()
         {
             throw new System.NotImplementedException();
-        }
-
-        public ICommand AddRecipe
-        {
-            get { return _addRecipe; }
         }
 
         private void OnAddRecipe()
