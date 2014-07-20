@@ -32,7 +32,8 @@ namespace Recipes.ViewModel
         {
             try
             {
-                _repo.Save(Name, Notes, ServingSize);
+                var recipe = _repo.Save(Name, Notes, ServingSize);
+                Messenger.Default.Send(new SaveNewRecipeCompletedMessage(recipe));
             }
             catch (Exception ex)
             {

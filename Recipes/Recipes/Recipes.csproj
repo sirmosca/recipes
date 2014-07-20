@@ -87,6 +87,7 @@
     <Compile Include="Interface\IRecipeRepository.cs" />
     <Compile Include="Message\CancelAddNewRecipeNameMessage.cs" />
     <Compile Include="Message\DeleteIngredientMessage.cs" />
+    <Compile Include="Message\SaveNewRecipeCompletedMessage.cs" />
     <Compile Include="Message\SaveRecipeCompletedMessage.cs" />
     <Compile Include="Model\Direction.cs">
       <DependentUpon>Recipe.tt</DependentUpon>

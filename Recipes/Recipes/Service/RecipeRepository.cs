@@ -12,7 +12,7 @@ namespace Recipes.Service
 {
     public class RecipeRepository : IRecipeRepository
     {
-        public void Save(string name, string notes, string servingSize)
+        public Recipe Save(string name, string notes, string servingSize)
         {
             Recipe r = new Recipe();
             r.Name = name;
@@ -23,7 +23,17 @@ namespace Recipes.Service
             {
                 r = context.Recipes.Add(r);
                 context.SaveChanges();
-                Messenger.Default.Send(new SaveRecipeCompletedMessage(r));
+                return r;
+            }
+        }
+
+        public Recipe Save(Recipe recipe)
+        {
+            using (var context = new RecipesEntities())
+            {
+                recipe = context.Recipes.Add(recipe);
+                context.SaveChanges();
+                return recipe;
             }
         }
     }

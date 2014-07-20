@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Recipes.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace Recipes.Interface
 {
     public interface IRecipeRepository
     {
-        void Save(string name, string notes, string servingSize);
+        Recipe Save(string name, string notes, string servingSize);
+
+        Recipe Save(Recipe recipe);
     }
 }

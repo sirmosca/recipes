@@ -11,16 +11,15 @@ namespace Recipes.Tests
         [TestMethod]
         public void CanAddIngredient()
         {
-            AddNewRecipeViewModel vm = new AddNewRecipeViewModel();
+            AddNewRecipeViewModel vm = new AddNewRecipeViewModel(new TestRepository());
             vm.AddIngredient.Execute(null);
-            int newCount = vm.Ingredients.Count;
             Assert.IsTrue(vm.HasIngredients);
         }
 
         [TestMethod]
         public void CanAddDirection()
         {
-            AddNewRecipeViewModel vm = new AddNewRecipeViewModel();
+            AddNewRecipeViewModel vm = new AddNewRecipeViewModel(new TestRepository());
             vm.AddDirection.Execute(null);
             Assert.IsTrue(vm.HasDirections);
         }

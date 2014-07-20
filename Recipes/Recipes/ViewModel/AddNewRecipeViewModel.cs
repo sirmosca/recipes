@@ -1,8 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Recipes.Interface;
 using Recipes.Message;
 using Recipes.Model;
+using Recipes.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,13 +19,28 @@ namespace Recipes.ViewModel
     {
         private string _recipeName;
         private Recipe _recipe;
+        private IRecipeRepository _repo;
 
-        public AddNewRecipeViewModel()
+        public AddNewRecipeViewModel(IRecipeRepository repo)
         {
+            _repo = repo;
+            Ingredients = new ObservableCollection<Ingredient>();
+            Directions = new ObservableCollection<Direction>();
+            Save = new RelayCommand(OnSave);
             AddIngredient = new RelayCommand(OnAddIngredient);
             DeleteIngredient = new RelayCommand<Ingredient>(param => OnDeleteIngredient(param));
             AddDirection = new RelayCommand(OnAddDirection);
             DeleteDirection = new RelayCommand<Direction>(param => OnDeleteDirection(param));
+        }
+
+        public ICommand Save { get; private set; }
+
+        private void OnSave()
+        {
+            _recipe.Ingredients = new Collection<Ingredient>(Ingredients);
+            _recipe.Directions = new Collection<Direction>(Directions);
+            _recipe = _repo.Save(_recipe);
+            Messenger.Default.Send(new SaveRecipeCompletedMessage(_recipe));
         }
 
         public ICommand AddIngredient { get; private set; }
@@ -31,7 +48,6 @@ namespace Recipes.ViewModel
         private void OnAddIngredient()
         {
             var ingredient = new Ingredient();
-            _recipe.Ingredients.Add(ingredient);
             Ingredients.Add(ingredient);
         }
 
@@ -39,7 +55,6 @@ namespace Recipes.ViewModel
 
         private void OnDeleteIngredient(Ingredient ingredient)
         {
-            _recipe.Ingredients.Remove(ingredient);
             Ingredients.Remove(ingredient);
         }
 
@@ -60,12 +75,11 @@ namespace Recipes.ViewModel
             Directions.Remove(direction);
         }
 
+        //TODO: recipe should be passed in via constructor. this is just easier right now.
         public void SetCurrentRecipe(Recipe recipe)
         {
             _recipe = recipe;
             RecipeName = recipe.Name;
-            Ingredients = new ObservableCollection<Ingredient>(recipe.Ingredients);
-            Directions = new ObservableCollection<Direction>(recipe.Directions);
         }
 
         public ObservableCollection<Ingredient> Ingredients { get; private set; }

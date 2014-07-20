@@ -55,6 +55,7 @@ namespace Recipes.ViewModel
             }
             _messenger = messenger;
             _messenger.Register<CancelAddNewRecipeNameMessage>(this, message => OnCancelAddNewRecipeName(message));
+            _messenger.Register<SaveNewRecipeCompletedMessage>(this, message => OnNewSaveRecipeCompleted(message));
             _messenger.Register<SaveRecipeCompletedMessage>(this, message => OnSaveRecipeCompleted(message));
         }
 
@@ -63,11 +64,16 @@ namespace Recipes.ViewModel
             CurrentViewModel = null;
         }
 
-        private void OnSaveRecipeCompleted(SaveRecipeCompletedMessage message)
+        private void OnNewSaveRecipeCompleted(SaveNewRecipeCompletedMessage message)
         {
-            var vm = new AddNewRecipeViewModel();
+            var vm = new AddNewRecipeViewModel(_repo);
             vm.SetCurrentRecipe(message.Recipe);
             CurrentViewModel = vm;
+        }
+
+        private void OnSaveRecipeCompleted(SaveRecipeCompletedMessage message)
+        {
+            CurrentViewModel = null;
         }
 
         public ICommand ViewRecipes

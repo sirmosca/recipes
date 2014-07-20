@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Recipes.Message
 {
-    public class SaveRecipeCompletedMessage
+    public class SaveNewRecipeCompletedMessage : MessageBase
     {
-        public SaveRecipeCompletedMessage(Recipe recipe)
+        public SaveNewRecipeCompletedMessage(Recipe recipe)
         {
             Recipe = recipe;
         }
