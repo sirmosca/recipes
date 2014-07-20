@@ -37,6 +37,14 @@ namespace Recipes.ViewModel
 
         public ICommand Save { get; private set; }
 
+        public ICommand AddIngredient { get; private set; }
+
+        public ICommand DeleteIngredient { get; private set; }
+        
+        public ICommand AddDirection { get; private set; }
+
+        public ICommand DeleteDirection { get; private set; }
+        
         private void OnSave()
         {
             try
@@ -50,22 +58,16 @@ namespace Recipes.ViewModel
             { }
         }
 
-        public ICommand AddIngredient { get; private set; }
-
         private void OnAddIngredient()
         {
             var ingredient = new Ingredient();
             Ingredients.Add(ingredient);
         }
 
-        public ICommand DeleteIngredient { get; private set; }
-
         private void OnDeleteIngredient(Ingredient ingredient)
         {
             Ingredients.Remove(ingredient);
         }
-
-        public ICommand AddDirection { get; private set; }
 
         private void OnAddDirection()
         {
@@ -74,11 +76,8 @@ namespace Recipes.ViewModel
             Directions.Add(direction);
         }
 
-        public ICommand DeleteDirection { get; private set; }
-
         private void OnDeleteDirection(Direction direction)
         {
-            _recipe.Directions.Remove(direction);
             Directions.Remove(direction);
         }
 
