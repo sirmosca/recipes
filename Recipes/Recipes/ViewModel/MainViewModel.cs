@@ -44,8 +44,8 @@ namespace Recipes.ViewModel
             ////}
 
             _repo = repo;
-            _addRecipe = new RelayCommand(OnAddRecipe, () => true);
-            _searchRecipes = new RelayCommand(OnSearchRecipes, () => true);
+            AddRecipe = new RelayCommand(OnAddRecipe, () => true);
+            SearchRecipes = new RelayCommand(OnSearchRecipes, () => true);
 
             if (messenger == null)
             {
