@@ -46,11 +46,11 @@ namespace Recipes.ViewModel
             _repo = repo;
             AddRecipe = new RelayCommand(OnAddRecipe, () => true);
             SearchRecipes = new RelayCommand(OnSearchRecipes, () => true);
+            SetMessenger(messenger);
+        }
 
-            if (messenger == null)
-            {
-                return;
-            }
+        private void SetMessenger(IMessenger messenger)
+        {
             _messenger = messenger;
             _messenger.Register<CancelAddNewRecipeNameMessage>(this, message => OnCancelAddNewRecipeName(message));
             _messenger.Register<SaveNewRecipeCompletedMessage>(this, message => OnNewSaveRecipeCompleted(message));

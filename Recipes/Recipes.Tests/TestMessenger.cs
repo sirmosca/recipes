@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Recipes.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,21 @@ namespace Recipes.Tests
 {
     public class TestMessenger : IMessenger
     {
+        private IMessenger _messenger;
+
+        public TestMessenger(IMessenger messenger)
+        {
+            _messenger = messenger;
+        }
+
         public void Cleanup() { }
 
         public static void OverrideDefault(IMessenger newMessenger) { }
 
-        public virtual void Register<TMessage>(object recipient, Action<TMessage> action) { }
+        public virtual void Register<TMessage>(object recipient, Action<TMessage> action) 
+        {
+            _messenger.Register<TMessage>(recipient, action);
+        }
 
         public virtual void Register<TMessage>(object recipient, bool receiveDerivedMessagesToo, Action<TMessage> action) { }
 
@@ -29,7 +40,10 @@ namespace Recipes.Tests
 
         public virtual void Send<TMessage, TTarget>(TMessage message) { }
 
-        public virtual void Send<TMessage>(TMessage message) { }
+        public virtual void Send<TMessage>(TMessage message) 
+        {
+            _messenger.Send<TMessage>(message);
+        }
 
         public virtual void Send<TMessage>(TMessage message, object token) { }
 

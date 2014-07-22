@@ -17,7 +17,7 @@ namespace Recipes.Tests
         public void Init()
         {
             _repo = new TestRepository();
-            _messenger = new TestMessenger();
+            _messenger = new TestMessenger(Messenger.Default);
             _vm = new AddNewRecipeViewModel(_repo, _messenger);
         }
 
