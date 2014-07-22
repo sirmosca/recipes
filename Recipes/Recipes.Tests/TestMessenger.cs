@@ -43,6 +43,7 @@ namespace Recipes.Tests
         public virtual void Send<TMessage>(TMessage message) 
         {
             _messenger.Send<TMessage>(message);
+            LastMessageTypeSent = message.GetType();
         }
 
         public virtual void Send<TMessage>(TMessage message, object token) { }
@@ -56,5 +57,7 @@ namespace Recipes.Tests
         public virtual void Unregister<TMessage>(object recipient, object token) { }
 
         public virtual void Unregister<TMessage>(object recipient, object token, Action<TMessage> action) { }
+
+        public Type LastMessageTypeSent { get; private set; }
     }
 }

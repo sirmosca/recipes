@@ -20,10 +20,12 @@ namespace Recipes.ViewModel
         private ICommand _save;
         private ICommand _cancel;
         private IRecipeRepository _repo;
+        private IMessenger _messenger;
 
-        public AddNewRecipeNameViewModel(IRecipeRepository repo)
+        public AddNewRecipeNameViewModel(IRecipeRepository repo, IMessenger messenger)
         {
             _repo = repo;
+            _messenger = messenger;
             _save = new RelayCommand(OnSave);
             _cancel = new RelayCommand(OnCancel);
         }
@@ -33,7 +35,7 @@ namespace Recipes.ViewModel
             try
             {
                 var recipe = _repo.Save(Name, Notes, ServingSize);
-                Messenger.Default.Send(new SaveNewRecipeCompletedMessage(recipe));
+                _messenger.Send(new SaveNewRecipeCompletedMessage(recipe));
             }
             catch (Exception ex)
             {
@@ -43,7 +45,7 @@ namespace Recipes.ViewModel
 
         private void OnCancel()
         {
-            Messenger.Default.Send(new CancelAddNewRecipeNameMessage());
+            _messenger.Send(new CancelAddNewRecipeNameMessage());
         }
 
         public ICommand Cancel { get { return _cancel; } }

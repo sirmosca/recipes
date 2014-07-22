@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Recipes.Message;
 using Recipes.ViewModel;
 using System;
-using System.Threading;
 
 
 namespace Recipes.Tests
@@ -30,7 +29,7 @@ namespace Recipes.Tests
         [TestMethod]
         public void TestCancelCommandClearsView()
         {
-            _vm.CurrentViewModel = new AddNewRecipeNameViewModel(null);
+            _vm.CurrentViewModel = new AddNewRecipeNameViewModel(null, null);
             _messenger.Send<CancelAddNewRecipeNameMessage>(new CancelAddNewRecipeNameMessage());
             Assert.IsNull(_vm.CurrentViewModel);
         }

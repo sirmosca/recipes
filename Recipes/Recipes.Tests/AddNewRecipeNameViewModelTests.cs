@@ -1,24 +1,46 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Recipes.Interface;
+using Recipes.Message;
 using Recipes.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Recipes.Tests
 {
     [TestClass]
     public class AddNewRecipeNameViewModelTests
     {
+        private AddNewRecipeNameViewModel _vm;
+        private TestMessenger _messenger;
+        private TestRepository _repo;
+
+        [TestInitialize]
+        public void Init()
+        {
+            _repo = new TestRepository();
+            _messenger = new TestMessenger(Messenger.Default);
+            _vm = new AddNewRecipeNameViewModel(_repo, _messenger); 
+        }
+
         [TestMethod]
         public void CanSaveRecipe()
         {
-            var repo = new TestRepository();
-            var vm = new AddNewRecipeNameViewModel(repo);
-            vm.Save.Execute(null);
-            Assert.AreEqual(1, repo.NumberOfTimesSaveWasCalled);
+            _vm.Save.Execute(null);
+            Assert.AreEqual(1, _repo.NumberOfTimesSaveWasCalled);
+        }
+
+        [TestMethod]
+        public void SavingRecipeSendsSaveRecipeCompletedMessage()
+        {
+            _vm.Save.Execute(null);
+            Assert.IsTrue(_messenger.LastMessageTypeSent == typeof(SaveNewRecipeCompletedMessage));
+        }
+
+        [TestMethod]
+        public void CancellingRecipeSendsCancelAddNewRecipeMessage()
+        {
+            _vm.Cancel.Execute(null);
+            Assert.IsTrue(_messenger.LastMessageTypeSent == typeof(CancelAddNewRecipeNameMessage));
         }
     }
 }

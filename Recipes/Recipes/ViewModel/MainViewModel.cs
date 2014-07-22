@@ -85,7 +85,7 @@ namespace Recipes.ViewModel
 
         private void OnAddRecipe()
         {
-            CurrentViewModel = new AddNewRecipeNameViewModel(_repo);
+            CurrentViewModel = new AddNewRecipeNameViewModel(_repo, _messenger);
         }
 
         public ViewModelBase CurrentViewModel
