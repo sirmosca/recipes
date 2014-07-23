@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:Recipes.View"
         xmlns:vm="clr-namespace:Recipes.ViewModel"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="509" Width="525"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:AddNewRecipeViewModel}">
@@ -18,9 +18,9 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" HorizontalAlignment="Left" Height="300" Margin="3" VerticalAlignment="Stretch" Width="100">
-            <Button Margin="3" Content="Search" Command="{Binding Path=SearchRecipes}"/>
-            <Button Margin="3" Content="Add" Command="{Binding Path=AddRecipe}"/>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left" Height="300" Margin="3" VerticalAlignment="Top" Width="100">
+            <Button Margin="3" Content="Search" Command="{Binding Path=SearchRecipes}"  />
+            <Button Margin="3" Content="Add" Command="{Binding Path=AddRecipe}"  />
         </StackPanel>
         <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Content="{Binding Path=CurrentViewModel}" />
     </Grid>
