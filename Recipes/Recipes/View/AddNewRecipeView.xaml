@@ -62,9 +62,9 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding Path=RecipeName, Mode=OneWay}" HorizontalAlignment="Center" />
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="Ingredients" HorizontalAlignment="Center" />
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Directions" HorizontalAlignment="Center" />
+        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding Path=RecipeName, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=Heading1}"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Ingredients" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=Heading2}" />
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Directions" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=Heading2}" />
         <ListBox Grid.Column="0" Grid.Row="2" BorderBrush="Transparent" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch"
                  ItemsSource="{Binding Ingredients}" ItemTemplate="{StaticResource IngredientDataTemplate}">
         </ListBox>
